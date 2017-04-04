@@ -57,6 +57,8 @@ syn match matlabSemicolon		";"
 syn match matlabComment			"%.*$"	contains=matlabTodo,matlabTab
 syn region matlabBlockComment        start=+%{+    end=+%}+ contains=matlabBlockComment
 
+syn match matlabHeadline		"%%.*$"	contains=matlabTodo,matlabTab
+
 
 " trigonometric
 syn keyword matlabFunc 			acos acosd acosh acot acotd acoth acsc acscd acsch asec asecd asech asin asind asinh
@@ -333,6 +335,7 @@ if version >= 508 || !exists("did_matlab_syntax_inits")
   HiLink matlabImplicit			matlabStatement
   HiLink matlabStatement		Statement
   HiLink matlabSemicolon		SpecialChar
+  HiLink matlabHeadline			Label
   HiLink matlabComment			Comment
   HiLink matlabBlockComment		Comment
   HiLink matlabImport			Include
