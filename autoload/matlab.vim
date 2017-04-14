@@ -1,14 +1,28 @@
 function! matlab#run()
-  if &syntax ==? 'matlab'
-    call matlab#_run(matlab#_filename())
-  else
-    echom "Not a matlab script"
-  endif
+  call matlab#_run(matlab#_filename())
+endfunction
+
+function! matlab#single_breakpoint()
+  write
+  let f = matlab#_filename()
+  let cmd = 'dbclear '.f.';dbstop '.f.' at '.line('.')
+  call matlab#_run(cmd)
 endfunction
 
 function! matlab#_run(command)
-  let target = matlab#_get_server_pane()
-  return matlab#_tmux("send-keys -t ".target." ".a:command." Enter")
+  if &syntax ==? 'matlab'
+    let target = matlab#_get_server_pane()
+
+    if target != -1
+      cal matlab#_tmux('send-keys -t'.target.' C-c')
+      return matlab#_tmux('send-keys -t '.target.' "'.a:command.'" Enter')
+    else
+      echom 'Matlab pane could not be found'
+    endif
+
+  else
+    echom 'Not a matlab script'
+  endif
 endfunction
 
 function! matlab#_tmux(command)
@@ -21,11 +35,11 @@ endfunction
 
 function! matlab#_get_server_pane()
   let cmd = 'list-panes -F "#{pane_index}:#{pane_current_command}"'
-  let views = split(matlab#_tmux(cmd), "\n")
+  let views = split(matlab#_tmux(cmd), '\n')
 
   for view in views
-    if match(view, "MATLAB") != -1
-      return split(view, ":")[0]
+    if match(view, 'MATLAB') != -1
+      return split(view, ':')[0]
     endif
   endfor
 
