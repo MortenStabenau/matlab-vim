@@ -25,7 +25,7 @@ function! matlab#run()
     return
   endif
 
-  call matlab#_run(matlab#_filename())
+  cal matlab#_run(matlab#_filename())
 endfunction
 
 function! matlab#single_breakpoint()
@@ -36,7 +36,7 @@ function! matlab#single_breakpoint()
   write
   let f = matlab#_filename()
   let cmd = 'dbclear '.f.';dbstop '.f.' at '.line('.')
-  call matlab#_run(cmd)
+  cal matlab#_run(cmd)
 endfunction
 
 function! matlab#_run(command, ...)
