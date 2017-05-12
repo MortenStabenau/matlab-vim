@@ -17,10 +17,18 @@ function! matlab#start_server()
 endfunction
 
 function! matlab#run()
+  if !matlab#_tmux_exists()
+    return
+  endif
+
   call matlab#_run(matlab#_filename())
 endfunction
 
 function! matlab#single_breakpoint()
+  if ! matlab#_tmux_exists()
+    return
+  endif
+
   write
   let f = matlab#_filename()
   let cmd = 'dbclear '.f.';dbstop '.f.' at '.line('.')
