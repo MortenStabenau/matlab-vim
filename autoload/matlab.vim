@@ -8,8 +8,12 @@ function! matlab#start_server()
 
     " Get new pane number
     let panes = split(matlab#_tmux('list-panes -F "#{pane_index}"'), '\n')
-    let cmd   = 'clear && matlab -nodesktop -nosplash'
-    cal matlab#_tmux('send-keys -t '.panes[-1].' "'.cmd.'" Enter')
+
+    " Set matlab pane
+    let g:matlab_server_pane = panes[-1]
+
+    " Launch matlab
+    cal matlab#_run('clear && matlab -nodesktop -nosplash', 0)
 
     " Zoom current pane
     cal matlab#_tmux('resize-pane -Z')
@@ -35,12 +39,17 @@ function! matlab#single_breakpoint()
   call matlab#_run(cmd)
 endfunction
 
-function! matlab#_run(command)
+function! matlab#_run(command, ...)
   if &syntax ==? 'matlab'
     let target = matlab#_get_server_pane()
 
     if target != -1
-      cal matlab#_tmux('send-keys -t'.target.' C-c')
+      " Send control-c to abort any running command except when it is disabled
+      " by an additional argument
+      if ! a:0 || (a:0 && a:1)
+        cal matlab#_tmux('send-keys -t'.target.' C-c')
+      endif
+
       return matlab#_tmux('send-keys -t '.target.' "'.a:command.'" Enter')
     else
       echom 'Matlab pane could not be found'
@@ -69,12 +78,17 @@ function! matlab#_filename()
 endfunction
 
 function! matlab#_get_server_pane()
+  if exists('g:matlab_server_pane')
+    return g:matlab_server_pane
+  endif
+
   let cmd = 'list-panes -F "#{pane_index}:#{pane_current_command}"'
   let views = split(matlab#_tmux(cmd), '\n')
 
   for view in views
     if match(view, 'MATLAB') != -1
-      return split(view, ':')[0]
+      let g:matlab_server_pane = split(view, ':')[0]
+      return matlab_server_pane
     endif
   endfor
 
