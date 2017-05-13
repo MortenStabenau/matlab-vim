@@ -35,6 +35,18 @@ function! matlab#single_breakpoint()
   cal matlab#_run(cmd)
 endfunction
 
+function! matlab#clear_breakpoint(all)
+  if ! matlab#_tmux_exists()
+    return
+  endif
+
+  if a:all
+    cal matlab#_run('dbclear all')
+  else
+    cal matlab#_run('dbclear '.matlab#_filename().';')
+  endif
+endfunction
+
 function! matlab#_run(command, ...)
   if &syntax ==? 'matlab'
     let target = matlab#_get_server_pane()
