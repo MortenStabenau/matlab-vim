@@ -70,7 +70,7 @@ function! matlab#_run(command, ...)
   endif
 endfunction
 
-function matlab#_tmux_exists()
+function! matlab#_tmux_exists()
   if empty($TMUX)
     echom "matlab.vim can not run without tmux"
     return 0
