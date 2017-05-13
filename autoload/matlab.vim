@@ -4,13 +4,9 @@ function! matlab#start_server()
   endif
 
   if matlab#_get_server_pane() == -1
-    cal matlab#_tmux('split-window -dhp 35')
-
-    " Get new pane number
-    let panes = split(matlab#_tmux('list-panes -F "#{pane_index}"'), '\n')
-
-    " Set matlab pane
-    let g:matlab_server_pane = panes[-1]
+    " Create new pane and save its id
+    let cmd = 'split-window -dhPp 35 -F "#{pane_index}"'
+    let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^0-9]', '', 'g')
 
     " Launch matlab
     cal matlab#_run('clear && matlab -nodesktop -nosplash', 0)
