@@ -47,6 +47,16 @@ function! matlab#clear_breakpoint(all)
   endif
 endfunction
 
+function! matlab#doc()
+  if ! matlab#_tmux_exists()
+    return
+  endif
+
+  let r = matlab#_run('help '.expand('<cword>'))
+  cal matlab#_open_pane()
+  return r
+endfunction
+
 function! matlab#_run(command, ...)
   if &syntax ==? 'matlab'
     let target = matlab#_get_server_pane()
@@ -68,6 +78,10 @@ function! matlab#_run(command, ...)
   else
     echom 'Not a matlab script'
   endif
+endfunction
+
+function! matlab#_open_pane()
+  return matlab#_tmux('select-pane -t .'.matlab#_get_server_pane())
 endfunction
 
 function! matlab#_tmux_exists()
