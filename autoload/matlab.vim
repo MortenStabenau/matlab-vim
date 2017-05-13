@@ -43,10 +43,12 @@ function! matlab#_run(command, ...)
       " Send control-c to abort any running command except when it is disabled
       " by an additional argument
       if ! a:0 || (a:0 && a:1)
-        cal matlab#_tmux('send-keys -t'.target.' C-c')
+        cal matlab#_tmux('send-keys -t .'.target.' C-c')
       endif
 
-      return matlab#_tmux('send-keys -t '.target.' "'.a:command.'" Enter')
+      let r =  matlab#_tmux('send-keys -t .'.target.' "'.a:command.'"')
+      cal matlab#_tmux('send-keys -t .'.target.' Enter')
+      return r
     else
       echom 'Matlab pane could not be found'
     endif
