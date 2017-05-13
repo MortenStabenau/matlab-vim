@@ -1,0 +1,110 @@
+*matlab.vim* Combining the powers of vim, MATLAB and tmux   *matlab*
+
+
+                         _    _         _             _                       ~
+       _ __ ___    __ _ | |_ | |  __ _ | |__  __   __(_) _ __ ___             ~
+      | '_ ` _ \  / _` || __|| | / _` || '_ \ \ \ / /| || '_ ` _ \            ~
+      | | | | | || (_| || |_ | || (_| || |_) |_\ V / | || | | | | |           ~
+      |_| |_| |_| \__,_| \__||_| \__,_||_.__/(_)\_/  |_||_| |_| |_|           ~
+
+
+==============================================================================
+ 0. CONTENTS                                        *matlab-contents*
+    1. Disclaimer                                   |matlab-disclaimer|
+    2. Introduction                                 |matlab-intro|
+    3. Commands                                     |matlab-commands|
+    4. Mappings                                     |matlab-mappings|
+    5. Maintainer                                   |matlab-maintainer|
+    6. Credits                                      |matlab-credits|
+
+==============================================================================
+ 1. DISCLAIMER                                      *matlab-disclaimer*
+
+MATLAB™ is a trademark of The MathWorks, Inc. which is not affiliated with this
+software in any way. This software is written by a hobbyist and should be used
+with proper care.
+
+==============================================================================
+ 2. INTRODUCTION                                    *matlab-intro*
+
+This plugin provides some simple integration between vim, MATLAB and tmux. On
+opening a MATLAB file (for example a .m-file) the plugin launches a MATLAB
+console in a new hidden tmux split at the right of the current split. The split
+is hidden by zooming the current pane and can be unhidden by using
+prefix+rightarrow, for example.
+
+The plugin now provides multiple functions (|matlab-functions|) and mappings
+|matlab-mappings|) which make it easier to interact with MATLAB. These include
+running scripts, adding breakpoints and opening documentation.
+
+matlab.vim also includes syntax highlighting, which was copied from
+MatlabFilesEdition by Fabrice Guy (|matlab-credits|).
+
+==============================================================================
+ 3. COMMANDS                                        *matlab-commands*
+
+:MatlabRun                                          *:MatlabRun*
+
+Runs the currently open MATLAB script.
+
+------------------------------------------------------------------------------
+:MatlabBreakpoint                                   *:MatlabBreakpoint*
+
+Sets a breakpoint in the current line. All other breakpoints in the file will
+be removed.
+
+
+------------------------------------------------------------------------------
+:MatlabStartServer                                  *:MatlabStartServer*
+
+Opens the MATLAB console in a new tmux split. It also sets a global variable
+(g:matlab_server_pane) which contains the pane id to which all other functions
+write their output.
+
+
+------------------------------------------------------------------------------
+:MatlabClearBreakpoint                              *:MatlabClearBreakpoint*
+
+Clears all breakpoints in the current file.
+
+------------------------------------------------------------------------------
+:MatlabClearBreakpoints                             *:MatlabClearBreakpoints*
+
+Clears all breakpoints.
+
+------------------------------------------------------------------------------
+:MatlabDoc[umentation]                 *:MatlabDoc* *:MatlabDocumentation*
+
+Runs the MATLAB help command on the word below the cursor. The result will be
+shown in the console.
+
+==============================================================================
+ 4. MAPPINGS                                        *matlab-mappings*
+
+The following mappings will only be applied when opening a matlab (e.g. a
+.m-file).
+
+<Leader+s>            is mapped to |:MatlabBreakpoint|
+<Leader+c>            is mapped to |:MatlabClearBreakpoint|
+<Leader+C>            is mapped to |:MatlabClearBreakpoints|
+<Leader+d>            is mapped to |:MatlabDoc|
+<Leader+r>            is mapped to |:MatlabRun|
+
+==============================================================================
+ 5. MAINTAINER                                      *matlab-maintainer*
+
+My name is Morten Stabenau. I wrote this plugin to make my frequent work with
+MATLAB easier. If you have bugs to report, comments or suggestions, you can
+reach me by opening a github issue or commenting on the repository.
+
+==============================================================================
+ 6. CREDITS                                         *matlab-credits*
+
+Thanks to:
+
+  - Mathworks ~
+    For writing MATLAB.
+  - Fabrice Guy ~
+    For his work on MatlabFilesEdition:
+    http://www.vim.org/scripts/script.php?script_id=2407
+    I copied a lot of his code for the syntax highlighting and the indentation.

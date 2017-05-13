@@ -1,0 +1,16 @@
+:MatlabBreakpoint	matlab.txt	/*:MatlabBreakpoint*
+:MatlabClearBreakpoint	matlab.txt	/*:MatlabClearBreakpoint*
+:MatlabClearBreakpoints	matlab.txt	/*:MatlabClearBreakpoints*
+:MatlabDoc	matlab.txt	/*:MatlabDoc*
+:MatlabDocumentation	matlab.txt	/*:MatlabDocumentation*
+:MatlabRun	matlab.txt	/*:MatlabRun*
+:MatlabStartServer	matlab.txt	/*:MatlabStartServer*
+matlab	matlab.txt	/*matlab*
+matlab-commands	matlab.txt	/*matlab-commands*
+matlab-contents	matlab.txt	/*matlab-contents*
+matlab-credits	matlab.txt	/*matlab-credits*
+matlab-disclaimer	matlab.txt	/*matlab-disclaimer*
+matlab-intro	matlab.txt	/*matlab-intro*
+matlab-maintainer	matlab.txt	/*matlab-maintainer*
+matlab-mappings	matlab.txt	/*matlab-mappings*
+matlab.vim	matlab.txt	/*matlab.vim*
