@@ -38,6 +38,7 @@ highlighting.
 - Allow `:MatlabRun` to take arbitrary commands as an argument
 - Add a few configuration options
 - Display breakpoints (?)
+- Add `:MatlabStopServer` command (?)
 
 ## Thanks
 - Fabrice Guy:
