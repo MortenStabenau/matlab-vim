@@ -21,6 +21,7 @@ function! matlab#run()
     return
   endif
 
+  cal matlab#_open_pane()
   cal matlab#_run(matlab#_filename())
 endfunction
 
