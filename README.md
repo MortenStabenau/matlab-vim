@@ -31,6 +31,13 @@ For a full documentation detailing the commands and mappings, please read the
 file or run `help matlab`. The latter also gives you pretty syntax
 highlighting.
 
+## TODO
+- Add new MATLAB functions to highlighting: the old MatlabFilesEdition code was
+  written in 2009 or so. Since then, a lot of new MATLAB functions have been
+  added which are currently not recognized by the syntax highlighting.
+- Allow `:MatlabRun` to take arbitrary commands as an argument
+- Add a few configuration options
+- Display breakpoints (?)
 
 ## Thanks
 - Fabrice Guy:
