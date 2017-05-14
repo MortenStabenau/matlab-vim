@@ -26,7 +26,8 @@ Plug 'MortenStabenau/matlab-vim'
 And then run `:PlugInstall`.
 
 ## Documentation
-For a full documentation detailing the commands and mappings, please the doc
+For a full documentation detailing the commands and mappings, please read the
+[doc](https://github.com/MortenStabenau/matlab-vim/blob/master/doc/matlab.txt)
 file or run `help matlab`. The latter also gives you pretty syntax
 highlighting.
 
