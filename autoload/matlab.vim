@@ -16,13 +16,17 @@ function! matlab#start_server()
   endif
 endfunction
 
-function! matlab#run()
+function! matlab#run(com)
   if !matlab#_tmux_exists()
     return
   endif
 
   cal matlab#_open_pane()
-  cal matlab#_run(matlab#_filename())
+  if empty(a:com)
+    cal matlab#_run(matlab#_filename())
+  else
+    cal matlab#_run(a:com)
+  endif
 endfunction
 
 function! matlab#single_breakpoint()
