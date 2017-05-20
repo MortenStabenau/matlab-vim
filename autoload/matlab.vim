@@ -1,3 +1,6 @@
+" ----------------------------------------------------------------------------
+" Public functions
+" ----------------------------------------------------------------------------
 function! matlab#start_server()
   if !matlab#_tmux_exists()
     return
@@ -9,7 +12,8 @@ function! matlab#start_server()
     let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^0-9]', '', 'g')
 
     " Launch matlab
-    cal matlab#_run('clear && matlab -nodesktop -nosplash', 0)
+    let cmd = 'matlab -nodesktop -nosplash -r "cd '.matlab#_get_project_root().';"'
+    cal matlab#_run("clear && ".cmd, 0)
 
     " Zoom current pane
     cal matlab#_tmux('resize-pane -Z')
@@ -62,6 +66,9 @@ function! matlab#doc()
   return r
 endfunction
 
+" ----------------------------------------------------------------------------
+" Internal functions
+" ----------------------------------------------------------------------------
 function! matlab#_run(command, ...)
   if &syntax ==? 'matlab'
     let target = matlab#_get_server_pane()
@@ -73,7 +80,8 @@ function! matlab#_run(command, ...)
         cal matlab#_tmux('send-keys -t .'.target.' C-c')
       endif
 
-      let r =  matlab#_tmux('send-keys -t .'.target.' "'.a:command.'"')
+      let cmd = escape(a:command, '"')
+      let r =  matlab#_tmux('send-keys -t .'.target.' "'.cmd.'"')
       cal matlab#_tmux('send-keys -t .'.target.' Enter')
       return r
     else
@@ -83,6 +91,17 @@ function! matlab#_run(command, ...)
   else
     echom 'Not a matlab script'
   endif
+endfunction
+
+function! matlab#_get_project_root()
+  let dir = projectroot#guess()
+  let mldir = glob(dir.'/matlab*')
+
+  if !empty(mldir)
+    let dir = split(mldir, '\n')[0]
+  endif
+
+  return dir
 endfunction
 
 function! matlab#_open_pane()
