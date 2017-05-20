@@ -1,3 +1,8 @@
+" Options
+let g:matlab_default_mappings = get(g:, 'matlab_default_mappings', 1)
+let g:matlab_executable       = get(g:, 'matlab_executable', 'matlab')
+let g:matlab_panel_size       = get(g:, 'matlab_panel_size', 35)
+
 " Commands
 com! -nargs=? MatlabRun     cal matlab#run(<args>)
 com! MatlabBreakpoint       cal matlab#single_breakpoint()

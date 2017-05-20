@@ -13,4 +13,8 @@ matlab-disclaimer	matlab.txt	/*matlab-disclaimer*
 matlab-intro	matlab.txt	/*matlab-intro*
 matlab-maintainer	matlab.txt	/*matlab-maintainer*
 matlab-mappings	matlab.txt	/*matlab-mappings*
+matlab-options	matlab.txt	/*matlab-options*
 matlab.vim	matlab.txt	/*matlab.vim*
+matlab_default_mappings	matlab.txt	/*matlab_default_mappings*
+matlab_executable	matlab.txt	/*matlab_executable*
+matlab_panel_size	matlab.txt	/*matlab_panel_size*

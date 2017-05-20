@@ -26,7 +26,8 @@ Plug 'MortenStabenau/matlab-vim'
 And then run `:PlugInstall`.
 
 ## Documentation
-For a full documentation detailing the commands and mappings, please read the
+For a full documentation detailing the commands, options and mappings, please
+read the
 [doc](https://github.com/MortenStabenau/matlab-vim/blob/master/doc/matlab.txt)
 file or run `help matlab`. The latter also gives you pretty syntax
 highlighting.
@@ -35,7 +36,7 @@ highlighting.
 - Add new MATLAB functions to highlighting: the old MatlabFilesEdition code was
   written in 2009 or so. Since then, a lot of new MATLAB functions have been
   added which are currently not recognized by the syntax highlighting.
-- Add a few configuration options
+- Add a nice demo gif to this README
 - Display breakpoints (?)
 - Add `:MatlabStopServer` command (?)
 

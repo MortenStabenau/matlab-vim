@@ -13,9 +13,10 @@
     1. Disclaimer                                   |matlab-disclaimer|
     2. Introduction                                 |matlab-intro|
     3. Commands                                     |matlab-commands|
-    4. Mappings                                     |matlab-mappings|
-    5. Maintainer                                   |matlab-maintainer|
-    6. Credits                                      |matlab-credits|
+    4. Options                                      |matlab-options|
+    5. Mappings                                     |matlab-mappings|
+    6. Maintainer                                   |matlab-maintainer|
+    7. Credits                                      |matlab-credits|
 
 ==============================================================================
  1. DISCLAIMER                                      *matlab-disclaimer*
@@ -79,10 +80,32 @@ Runs the MATLAB help command on the word below the cursor. The result will be
 shown in the console.
 
 ==============================================================================
- 4. MAPPINGS                                        *matlab-mappings*
+ 4. OPTIONS                                         *matlab-options*
+
+g:matlab_default_mappings                           *matlab_default_mappings*
+
+Default value: 1
+Set this to 0 to disable all default mappings. This might be useful to prevent
+the plugin from overwriting your own mappings.
+
+------------------------------------------------------------------------------
+g:matlab_executable                                 *matlab_executable*
+
+Default value: 'matlab'
+Change the path to the matlab executable that gets run during
+|:MatlabStartServer|.
+
+------------------------------------------------------------------------------
+g:matlab_panel_size                                 *matlab_panel_size*
+
+Default value: 35
+Size of MATLABs tmux panel in percent.
+
+==============================================================================
+ 5. MAPPINGS                                        *matlab-mappings*
 
 The following mappings will only be applied when opening a matlab (e.g. a
-.m-file).
+.m-file) and if the option |matlab_default_mappings| is set.
 
 <Leader+s>            is mapped to |:MatlabBreakpoint|
 <Leader+c>            is mapped to |:MatlabClearBreakpoint|
@@ -91,14 +114,14 @@ The following mappings will only be applied when opening a matlab (e.g. a
 <Leader+r>            is mapped to |:MatlabRun|
 
 ==============================================================================
- 5. MAINTAINER                                      *matlab-maintainer*
+ 6. MAINTAINER                                      *matlab-maintainer*
 
 My name is Morten Stabenau. I wrote this plugin to make my frequent work with
 MATLAB easier. If you have bugs to report, comments or suggestions, you can
 reach me by opening a github issue or commenting on the repository.
 
 ==============================================================================
- 6. CREDITS                                         *matlab-credits*
+ 7. CREDITS                                         *matlab-credits*
 
 Thanks to:
 

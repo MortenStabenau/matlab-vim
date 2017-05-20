@@ -10,12 +10,12 @@ function! matlab#start_server()
 
   if matlab#_get_server_pane() == -1
     " Create new pane and save its id
-    let cmd = 'split-window -dhPp 35 -F "#{pane_index}"'
+    let cmd = 'split-window -dhPp '.g:matlab_panel_size.' -F "#{pane_index}"'
     let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^0-9]', '', 'g')
 
     " Launch matlab
-    let cmd = 'matlab -nodesktop -nosplash -r "cd '.matlab#_get_project_root().';"'
-    cal matlab#_run("clear && ".cmd, 0)
+    cal matlab#_run('clear && '.g:matlab_executable.' -nodesktop -nosplash'.
+          \ ' -r "cd '.matlab#_get_project_root().';"', 0)
 
     " Zoom current pane
     cal matlab#_tmux('resize-pane -Z')
