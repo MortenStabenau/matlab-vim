@@ -6,9 +6,9 @@ console in a new hidden tmux split at the right of the current split. The split
 is hidden by zooming the current pane and can be unhidden by using
 `prefix+rightarrow`, for example.
 
-The plugin now provides multiple functions and mappings
- which make it easier to interact with MATLAB. These include
-running scripts, adding breakpoints and opening documentation.
+The plugin now provides multiple functions and mappings which make it easier to
+interact with MATLAB. These include running scripts, adding breakpoints and
+opening documentation.
 
 matlab.vim also includes syntax highlighting, which was copied from
 [MatlabFilesEdition](http://www.vim.org/scripts/script.php?script_id=2407) by

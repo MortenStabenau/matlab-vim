@@ -1,6 +1,8 @@
 " ----------------------------------------------------------------------------
 " Public functions
 " ----------------------------------------------------------------------------
+
+" Open a matlab instance in a new tmux split
 function! matlab#start_server()
   if !matlab#_tmux_exists()
     return
@@ -20,6 +22,8 @@ function! matlab#start_server()
   endif
 endfunction
 
+" Run an arbitrary command. If the command is left empty, the current file is
+" executed
 function! matlab#run(...)
   if !matlab#_tmux_exists()
     return
@@ -33,6 +37,7 @@ function! matlab#run(...)
   endif
 endfunction
 
+" Remove breakpoints from current file and create a new one in the current line
 function! matlab#single_breakpoint()
   if ! matlab#_tmux_exists()
     return
@@ -44,6 +49,8 @@ function! matlab#single_breakpoint()
   cal matlab#_run(cmd)
 endfunction
 
+" Clear breakpoints in current file. If all is true, breakpoints outside the
+" current file will be cleared aswell.
 function! matlab#clear_breakpoint(all)
   if ! matlab#_tmux_exists()
     return
@@ -56,6 +63,7 @@ function! matlab#clear_breakpoint(all)
   endif
 endfunction
 
+" Show help for a matlab function under the cursor
 function! matlab#doc()
   if ! matlab#_tmux_exists()
     return
