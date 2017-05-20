@@ -1,5 +1,5 @@
 " Commands
-com! -nargs=1 MatlabRun    cal matlab#run(<args>)
+com! -nargs=? MatlabRun    cal matlab#run(<args>)
 com! MatlabBreakpoint       cal matlab#single_breakpoint()
 com! MatlabStartServer      cal matlab#start_server()
 com! MatlabClearBreakpoint  cal matlab#clear_breakpoint(0)

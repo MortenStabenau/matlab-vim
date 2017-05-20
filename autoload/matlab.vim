@@ -16,16 +16,16 @@ function! matlab#start_server()
   endif
 endfunction
 
-function! matlab#run(com)
+function! matlab#run(...)
   if !matlab#_tmux_exists()
     return
   endif
 
   cal matlab#_open_pane()
-  if empty(a:com)
-    cal matlab#_run(matlab#_filename())
+  if a:0
+    cal matlab#_run(a:1)
   else
-    cal matlab#_run(a:com)
+    cal matlab#_run(matlab#_filename())
   endif
 endfunction
 
