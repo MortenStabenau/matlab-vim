@@ -41,9 +41,9 @@ highlighting.
 
 ## Thanks
 - Fabrice Guy:
-For his work on
+for his work on
 [MatlabFilesEdition](http://www.vim.org/scripts/script.php?script_id=2407). I
 used his code for the syntax highlighting and the indentation.
 - Daan Bakker:
-or his handy [projectroot](https://github.com/dbakker/vim-projectroot)
+for his handy [projectroot](https://github.com/dbakker/vim-projectroot)
 functions
