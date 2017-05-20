@@ -19,11 +19,32 @@ Use your favourite vim plugin manager. I recommend using
 [vim-plug](https://github.com/junegunn/vim-plug). To install this plugin add
 this to your `.vimrc`:
 
-```
+```vim
 Plug 'MortenStabenau/matlab-vim'
 ```
 
 And then run `:PlugInstall`.
+
+## Basic usage
+- Open any MATLAB file with vim inside of tmux. A MATLAB console will
+  automatically open inside a hidden tmux split.
+- Run `:MatlabRun` to execute the file
+- Run `:MatlabBreakpoint` to set a breakpoint in the current line
+- Run `:MatlabDoc` to open the help for the function below your cursor
+
+## Options
+- Change the MATLAB executable
+```vim
+let g:matlab_executable = '/path/to/your/matlab/version'
+```
+- Change the tmux split size
+```vim
+let g:matlab_panel_size = 50
+```
+
+For an overview of all options, check out the
+[doc](https://github.com/MortenStabenau/matlab-vim/blob/master/doc/matlab.txt)
+file.
 
 ## Documentation
 For a full documentation detailing the commands, options and mappings, please
