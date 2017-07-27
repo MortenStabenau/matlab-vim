@@ -58,7 +58,6 @@ highlighting.
   written in 2009 or so. Since then, a lot of new MATLAB functions have been
   added which are currently not recognized by the syntax highlighting.
 - Initial working folder should check if any MATLAB files are present
-- Better detection for already running MATLAB servers
 - Add a nice demo gif to this README
 - Display breakpoints (?)
 - Add `:MatlabStopServer` command (?)

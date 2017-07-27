@@ -9,13 +9,14 @@ function! matlab#start_server()
   endif
 
   if matlab#_get_server_pane() == -1
-    " Create new pane and save its id
-    let cmd = 'split-window -dhPp '.g:matlab_panel_size.' -F "#{pane_index}"'
+    " Create new pane, start matlab in it and save its id
+    " Yeah, this is a reeeeally long command
+    let change_dir = 'cd '.matlab#_get_project_root().';'
+    let mlcmd = 'clear && '.g:matlab_executable.' -nodesktop -nosplash'.
+          \ ' -r \"'.change_dir.'\"'
+    let cmd = 'split-window -dhPp '.g:matlab_panel_size.' -F "#{pane_index}" '.
+          \ '"' . mlcmd . '"'
     let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^0-9]', '', 'g')
-
-    " Launch matlab
-    cal matlab#_run('clear && '.g:matlab_executable.' -nodesktop -nosplash'.
-          \ ' -r "cd '.matlab#_get_project_root().';"', 0)
 
     " Zoom current pane
     cal matlab#_tmux('resize-pane -Z')
@@ -138,13 +139,14 @@ function! matlab#_get_server_pane()
     return g:matlab_server_pane
   endif
 
-  let cmd = 'list-panes -F "#{pane_index}:#{pane_current_command}"'
+  let cmd = 'list-panes -F "#{pane_index}:#{pane_start_command}"'
   let views = split(matlab#_tmux(cmd), '\n')
 
   for view in views
-    if match(view, 'MATLAB') != -1
+    " Check if the start command contains matlab (case-insensitive)
+    if match(view, '\cmatlab') != -1
       let g:matlab_server_pane = split(view, ':')[0]
-      return matlab_server_pane
+      return g:matlab_server_pane
     endif
   endfor
 
