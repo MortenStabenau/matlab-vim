@@ -60,7 +60,8 @@ highlighting.
 - Initial working folder should check if any MATLAB files are present
 - Add a nice demo gif to this README
 - Display breakpoints (?)
-- Add `:MatlabStopServer` command (?)
+- Add `:MatlabStopServer` command (?), also auto-closing
+- Paths with spaces do not work
 
 ## Thanks
 - Fabrice Guy:
