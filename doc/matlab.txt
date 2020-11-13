@@ -62,6 +62,11 @@ Opens the MATLAB console in a new tmux split. It also sets a global variable
 (g:matlab_server_pane) which contains the pane id to which all other functions
 write their output.
 
+------------------------------------------------------------------------------
+:MatlabStopServer                                  *:MatlabStopServer*
+
+Closes the MATLAB console which was opened before using the MatlabStartServer
+command. This also clear the g:matlab_server_pane variable.
 
 ------------------------------------------------------------------------------
 :MatlabClearBreakpoint                              *:MatlabClearBreakpoint*

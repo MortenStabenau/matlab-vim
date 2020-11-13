@@ -23,6 +23,17 @@ function! matlab#start_server()
   endif
 endfunction
 
+function! matlab#stop_server()
+  if !matlab#_tmux_exists()
+    return
+  endif
+
+  if matlab#_get_server_pane() != -1
+    cal matlab#_run('quit')
+    unlet g:matlab_server_pane
+  endif
+endfunction
+
 " Run an arbitrary command. If the command is left empty, the current file is
 " executed
 function! matlab#run(...)
@@ -34,6 +45,10 @@ function! matlab#run(...)
   if a:0
     cal matlab#_run(a:1)
   else
+    " Make sure that this is actually a matlab script
+    if ! matlab#_is_ml_script()
+        return
+    end
     cal matlab#_run(matlab#_filename())
   endif
 endfunction
@@ -43,6 +58,10 @@ function! matlab#single_breakpoint()
   if ! matlab#_tmux_exists()
     return
   endif
+
+  if ! matlab#_is_ml_script()
+      return
+  end
 
   write
   let f = matlab#_filename()
@@ -78,27 +97,31 @@ endfunction
 " ----------------------------------------------------------------------------
 " Internal functions
 " ----------------------------------------------------------------------------
-function! matlab#_run(command, ...)
+function! matlab#_is_ml_script()
   if &syntax ==? 'matlab'
-    let target = matlab#_get_server_pane()
-
-    if target != -1
-      " Send control-c to abort any running command except when it is disabled
-      " by an additional argument
-      if ! a:0 || (a:0 && a:1)
-        cal matlab#_tmux('send-keys -t .'.target.' C-c')
-      endif
-
-      let cmd = escape(a:command, '"')
-      let r =  matlab#_tmux('send-keys -t .'.target.' "'.cmd.'"')
-      cal matlab#_tmux('send-keys -t .'.target.' Enter')
-      return r
-    else
-      echom 'Matlab pane could not be found'
-    endif
-
+      return 1
   else
     echom 'Not a matlab script'
+    return 0
+  endif
+endfunction
+
+function! matlab#_run(command, ...)
+  let target = matlab#_get_server_pane()
+
+  if target != -1
+    " Send control-c to abort any running command except when it is disabled
+    " by an additional argument
+    if ! a:0 || (a:0 && a:1)
+      cal matlab#_tmux('send-keys -t .'.target.' C-c')
+    endif
+
+    let cmd = escape(a:command, '"')
+    let r =  matlab#_tmux('send-keys -t .'.target.' "'.cmd.'"')
+    cal matlab#_tmux('send-keys -t .'.target.' Enter')
+    return r
+  else
+    echom 'Matlab pane could not be found'
   endif
 endfunction
 
