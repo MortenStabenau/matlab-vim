@@ -49,6 +49,7 @@ function! matlab#run(...)
     if ! matlab#_is_ml_script()
         return
     end
+    write
     cal matlab#_run(matlab#_filename())
   endif
 endfunction

@@ -5,6 +5,7 @@
 :MatlabDocumentation	matlab.txt	/*:MatlabDocumentation*
 :MatlabRun	matlab.txt	/*:MatlabRun*
 :MatlabStartServer	matlab.txt	/*:MatlabStartServer*
+:MatlabStopServer	matlab.txt	/*:MatlabStopServer*
 matlab	matlab.txt	/*matlab*
 matlab-commands	matlab.txt	/*matlab-commands*
 matlab-contents	matlab.txt	/*matlab-contents*
