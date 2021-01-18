@@ -3,10 +3,16 @@
 " ----------------------------------------------------------------------------
 
 " Open a matlab instance in a new tmux split
-function! matlab#start_server()
+function! matlab#start_server(...)
+  " First argument is true if this is called by the autostart function
   if !matlab#_tmux_exists()
     return
   endif
+
+  " Check if autostart is enabled
+  if a:0 && a:1 && ! g:matlab_auto_start
+    return
+  end
 
   if matlab#_get_server_pane() == -1
     " Create new pane, start matlab in it and save its id

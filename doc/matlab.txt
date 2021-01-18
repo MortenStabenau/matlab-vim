@@ -87,6 +87,14 @@ shown in the console.
 ==============================================================================
  4. OPTIONS                                         *matlab-options*
 
+
+g:matlab_auto_start                                 *matlab_auto_start*
+
+Default value: 1
+Set this to 0 to disable Matlab starting automatically in a tmux split when
+opening a Matlab file.
+
+------------------------------------------------------------------------------
 g:matlab_default_mappings                           *matlab_default_mappings*
 
 Default value: 1
