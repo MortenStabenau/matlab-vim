@@ -20,9 +20,11 @@ function! matlab#start_server(...)
     let change_dir = 'cd '.matlab#_get_project_root().';'
     let mlcmd = 'clear && '.g:matlab_executable.' -nodesktop -nosplash'.
           \ ' -r \"'.change_dir.'\"'
-    let cmd = 'split-window -dhPp '.g:matlab_panel_size.' -F "#{pane_index}" '.
-          \ '"' . mlcmd . '"'
+    let cmd = 'split-window -dhPF "#{pane_index}" "' . mlcmd . '"'
     let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^0-9]', '', 'g')
+
+    " Set pane size
+    cal matlab#_tmux('resize-pane -t ' . g:matlab_server_pane . ' -x ' . g:matlab_panel_size)
 
     " Zoom current pane
     cal matlab#_tmux('resize-pane -Z')

@@ -111,8 +111,8 @@ Change the path to the matlab executable that gets run during
 ------------------------------------------------------------------------------
 g:matlab_panel_size                                 *matlab_panel_size*
 
-Default value: 35
-Size of MATLABs tmux panel in percent.
+Default value: 120
+Size of MATLABs tmux panel in number of columns.
 
 ==============================================================================
  5. MAPPINGS                                        *matlab-mappings*
