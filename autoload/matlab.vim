@@ -22,6 +22,7 @@ function! matlab#start_server(...)
           \ ' -r \"'.change_dir.'\"'
     let cmd = 'split-window -dhPF "#{pane_index}" "' . mlcmd . '"'
     let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^0-9]', '', 'g')
+    echom 'Matlab server started.'
 
     " Set pane size
     cal matlab#_tmux('resize-pane -t ' . g:matlab_server_pane . ' -x ' . g:matlab_panel_size)
@@ -110,7 +111,7 @@ function! matlab#_is_ml_script()
   if &syntax ==? 'matlab'
       return 1
   else
-    echom 'Not a matlab script'
+    echom 'Not a matlab script.'
     return 0
   endif
 endfunction
@@ -151,7 +152,7 @@ endfunction
 
 function! matlab#_tmux_exists()
   if empty($TMUX)
-    echom "matlab.vim can not run without tmux"
+    echom "matlab.vim can not run without tmux."
     return 0
   endif
 
