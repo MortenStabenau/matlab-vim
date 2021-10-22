@@ -131,7 +131,12 @@ function! matlab#_run(command, ...)
     cal matlab#_tmux('send-keys -t .'.target.' Enter')
     return r
   else
-    echom 'Matlab pane could not be found'
+    echom 'Matlab pane could not be found. Start Matlab? [Y/n]'
+    let c = getchar()
+    if nr2char(c) == 'y'
+        cal matlab#start_server()
+        cal matlab#_tmux('send-keys Enter') " To dismiss the Press ENTER to continue message
+    endif
   endif
 endfunction
 
