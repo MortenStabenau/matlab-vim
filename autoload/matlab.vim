@@ -5,6 +5,7 @@
 " Open a matlab instance in a new tmux split
 function! matlab#start_server(...)
   " First argument is true if this is called by the autostart function
+  " Second argument is an optional command to execute on startup
   if !matlab#_tmux_exists()
     return
   endif
@@ -17,10 +18,15 @@ function! matlab#start_server(...)
   if matlab#_get_server_pane() == -1
     " Create new pane, start matlab in it and save its id
     " Yeah, this is a reeeeally long command
-    let change_dir = 'cd '.matlab#_get_project_root().';'
-    let mlcmd = 'clear && '.g:matlab_executable.' -nodesktop -nosplash'.
-          \ ' -r \"'.change_dir.'\"'
-    let cmd = 'split-window -dhPF "#{pane_index}" "' . mlcmd . '"'
+    let startup_command = 'cd '.matlab#_get_project_root().';'
+
+    " Treat optional second argument: add command to startup
+    if a:0 > 1
+      let startup_command = startup_command.a:2.';'
+    endif
+
+    let mlcmd = 'clear && '.g:matlab_executable.' -nodesktop -nosplash -r \"'.startup_command.'\"'
+    let cmd = 'split-window -dhPp '.g:matlab_panel_size.' -F "#{pane_index}" "'.mlcmd.'"'
     let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^0-9]', '', 'g')
     echom 'Matlab server started.'
 
@@ -134,7 +140,7 @@ function! matlab#_run(command, ...)
     echom 'Matlab pane could not be found. Start Matlab? [Y/n]'
     let c = getchar()
     if nr2char(c) == 'y'
-        cal matlab#start_server()
+        cal matlab#start_server(0, escape(a:command, '"')) " Start server and run current command!
         cal matlab#_tmux('send-keys Enter') " To dismiss the Press ENTER to continue message
     endif
   endif
