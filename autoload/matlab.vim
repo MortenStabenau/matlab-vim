@@ -108,7 +108,7 @@ endfunction
 " Internal functions
 " ----------------------------------------------------------------------------
 function! matlab#_is_ml_script()
-  if &syntax ==? 'matlab'
+  if (&syntax ==? 'matlab' || &syntax ==? 'octave')
       return 1
   else
     echom 'Not a matlab script.'
