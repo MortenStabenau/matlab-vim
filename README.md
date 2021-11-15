@@ -54,6 +54,7 @@ file or run `help matlab`. The latter also gives you pretty syntax
 highlighting.
 
 ## TODO
+- Octave compatibility?
 - Add new MATLAB functions to highlighting: the old MatlabFilesEdition code was
   written in 2009 or so. Since then, a lot of new MATLAB functions have been
   added which are currently not recognized by the syntax highlighting.
@@ -65,6 +66,7 @@ highlighting.
 - Paths with spaces do not work
 
 ## Thanks
+- [Zack](https://github.com/zaporter) for his [bugfix](https://github.com/MortenStabenau/matlab-vim/pull/2)
 - Fabrice Guy:
 for his work on
 [MatlabFilesEdition](http://www.vim.org/scripts/script.php?script_id=2407). I
