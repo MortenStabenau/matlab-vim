@@ -139,7 +139,7 @@ function! matlab#_run(command, ...)
   else
     echom 'Matlab pane could not be found. Start Matlab? [Y/n]'
     let c = getchar()
-    if nr2char(c) == 'y'
+    if nr2char(c) != 'n'
         cal matlab#start_server(0, escape(a:command, '"')) " Start server and run current command!
         cal matlab#_tmux('send-keys Enter') " To dismiss the Press ENTER to continue message
     endif
