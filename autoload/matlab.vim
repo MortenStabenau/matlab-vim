@@ -26,7 +26,7 @@ function! matlab#start_server(...)
     endif
 
     let mlcmd = 'clear && '.g:matlab_executable.' -nodesktop -nosplash -r \"'.startup_command.'\"'
-    let cmd = 'split-window -dhPp '.g:matlab_panel_size.' -F "#{pane_index}" "'.mlcmd.'"'
+    let cmd = 'split-window -dhPF "#{pane_index}" "'.mlcmd.'"'
     let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^0-9]', '', 'g')
     echom 'Matlab server started.'
 
