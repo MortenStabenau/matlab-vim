@@ -18,4 +18,5 @@ com! MatlabDoc              cal matlab#doc()
 " Autoload matlab when opening a .m-file
 augroup matlab-vim
     autocmd FileType matlab :MatlabAutoStartServer
+    autocmd VimLeave * :MatlabStopServer
 augroup END

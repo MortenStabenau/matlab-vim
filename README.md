@@ -61,8 +61,6 @@ highlighting.
 - Initial working folder should check if any MATLAB files are present
 - Add a nice demo gif to this README
 - Display breakpoints (?)
-- Maybe auto-close the MATLAB server when closing the last MATLAB file (or vim
-  in general) ?
 - Paths with spaces do not work
 
 ## Thanks
