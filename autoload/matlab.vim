@@ -39,7 +39,7 @@ function! matlab#start_server(...)
 endfunction
 
 function! matlab#stop_server()
-  if !matlab#_tmux_exists()
+  if !matlab#_tmux_exists() || ! exists('g:matlab_server_pane')
     return
   endif
 
