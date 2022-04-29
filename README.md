@@ -55,13 +55,12 @@ highlighting.
 
 ## TODO
 - Octave compatibility?
-- Add new MATLAB functions to highlighting: the old MatlabFilesEdition code was
-  written in 2009 or so. Since then, a lot of new MATLAB functions have been
-  added which are currently not recognized by the syntax highlighting.
 - Initial working folder should check if any MATLAB files are present
 - Add a nice demo gif to this README
 - Display breakpoints (?)
 - Paths with spaces do not work
+- Running blocks - pretty tricky, I would need to find the code inside this group of percentage sign, strip out all
+  comments and empty lines, add them all together with correct escaping and send it into a tmux command to be executed.
 
 ## Thanks
 - [Zack](https://github.com/zaporter) for his [bugfix](https://github.com/MortenStabenau/matlab-vim/pull/2)
