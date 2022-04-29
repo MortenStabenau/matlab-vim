@@ -148,11 +148,14 @@ endfunction
 
 function! matlab#_get_project_root()
   let dir = projectroot#guess()
-  let mldir = glob(dir.'/matlab*')
 
-  if !empty(mldir)
-    let dir = split(mldir, '\n')[0]
-  endif
+  " Check if there is a folder like matlab or matlab-code. Assume this is the correct base directory.
+  let mldir = glob(dir.'/matlab*')
+  for d in split(mldir, '\n')
+      if isdirectory(d)
+          return d
+      endif
+  endfor
 
   return dir
 endfunction
