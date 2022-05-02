@@ -218,11 +218,11 @@ syn keyword matlabFunc uplus mod rem idivide ceil fix floor round bsxfun sin sin
 syn keyword matlabFunc cospi acos acosd cosh acosh tan tand atan atand atan2 atan2d tanh atanh csc cscd acsc acscd
 syn keyword matlabFunc csch acsch sec secd asec asecd sech asech cot cotd acot acotd coth acoth hypot deg2rad rad2deg
 syn keyword matlabFunc cart2pol cart2sph pol2cart sph2cart exp expm1 log log10 log1p log2 nextpow2 nthroot pow2
-syn keyword matlabFunc reallog realpow realsqrt sqrt abs angle complex conj cplxpair i imag isreal j real sign unwrap
+syn keyword matlabFunc reallog realpow realsqrt sqrt abs angle complex conj cplxpair imag isreal real sign unwrap
 syn keyword matlabFunc factor factorial gcd isprime lcm nchoosek perms matchpairs primes rat rats poly polyeig polyfit
 syn keyword matlabFunc residue roots polyval polyvalm conv deconv polyint polyder airy besselh besseli besselj besselk
 syn keyword matlabFunc bessely beta betainc betaincinv betaln erf erfc erfcinv erfcx erfinv gamma gammainc gammaincinv
-syn keyword matlabFunc gammaln psi ellipj ellipke expint legendre flintmax i j allfinite anynan isfinite isinf isnan
+syn keyword matlabFunc gammaln psi ellipj ellipke expint legendre flintmax allfinite anynan isfinite isinf isnan
 syn keyword matlabFunc compan gallery hadamard hankel hilb invhilb magic pascal rosser toeplitz vander wilkinson
 syn keyword matlabFunc mldivide mrdivide pagemldivide pagemrdivide decomposition lsqminnorm linsolve inv pageinv pinv
 syn keyword matlabFunc lscov lsqnonneg sylvester eig eigs balance svd pagesvd svds svdsketch gsvd ordeig ordqz

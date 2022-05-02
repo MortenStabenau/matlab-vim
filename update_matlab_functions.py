@@ -40,7 +40,7 @@ keywords = {'return', 'function', 'switch', 'case', 'else', 'elseif', 'end', 'if
         'do', 'for', 'while', 'classdef', 'methods', 'properties', 'events', 'persistent', 'global', 'try', 'catch',
         'rethrow', 'throw', 'import', 'true', 'false', 'eps', 'Inf', 'NaN', 'pi',
         'Short-circuit &&, ||', 'if, elseif, else', 'try, catch', 'switch, case, otherwise', 'matlab (Windows)',
-        'matlab (macOS)', 'matlab (Linux)', 'contains'}
+        'matlab (macOS)', 'matlab (Linux)', 'contains', 'i', 'j'}
 
 OUTPUT = 'matlab-functions-syntax.vim'
 with open(OUTPUT, 'w') as f:
