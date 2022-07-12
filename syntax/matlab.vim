@@ -59,7 +59,7 @@ syn match matlabTransposeOperator	"[])a-zA-Z0-9.]'"lc=1
 syn match matlabSemicolon		";"
 
 syn match matlabComment			"%.*$"	contains=matlabTodo,matlabTab
-syn region matlabBlockComment        start=+%{+    end=+%}+ contains=matlabBlockComment
+syn region matlabBlockComment        start="^\s*%{\s*$"    end="^\s*%}\s*$" contains=matlabBlockComment,matlabTodo,matlabTab
 
 syn match matlabHeadline		"%%.*$"	contains=matlabTodo,matlabTab
 
