@@ -26,9 +26,15 @@ function! matlab#start_server(...)
     endif
 
     let mlcmd = 'clear && '.g:matlab_executable.' -nodesktop -nosplash -r \"'.startup_command.'\"'
-    let cmd = 'split-window -dhPF "#{pane_index}" "'.mlcmd.'"'
-    let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^0-9]', '', 'g')
-    echom 'Matlab server started.'
+    let cmd = 'split-window -dhPF "#{session_id}:#{window_id}.#{pane_id}" "'.mlcmd.'"'
+    let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^%$@\.:0-9]', '', 'g')
+
+    if matlab#_pane_exists()
+        echom 'Matlab server started.'
+    else
+        echom "Something went wrong starting the MATLAB server."
+        return
+    endif
 
     " Set pane size
     cal matlab#_tmux('resize-pane -t ' . g:matlab_server_pane . ' -x ' . g:matlab_panel_size)
@@ -129,12 +135,12 @@ function! matlab#_run(command, ...)
     " Send control-c to abort any running command except when it is disabled
     " by an additional argument
     if ! a:0 || (a:0 && a:1)
-      cal matlab#_tmux('send-keys -t .'.target.' C-c')
+      cal matlab#_tmux('send-keys -t "'.target.'" C-c')
     endif
 
     let cmd = escape(a:command, '"')
-    let r =  matlab#_tmux('send-keys -t .'.target.' "'.cmd.'"')
-    cal matlab#_tmux('send-keys -t .'.target.' Enter')
+    let r =  matlab#_tmux('send-keys -t "'.target.'" "'.cmd.'"')
+    cal matlab#_tmux('send-keys -t "'.target.'" Enter')
     return r
   else
     echom 'Matlab pane could not be found. Start Matlab? [Y/n]'
@@ -182,20 +188,30 @@ function! matlab#_filename()
 endfunction
 
 function! matlab#_get_server_pane()
-  if exists('g:matlab_server_pane')
+  if matlab#_pane_exists()
     return g:matlab_server_pane
   endif
 
-  let cmd = 'list-panes -F "#{pane_index}:#{pane_start_command}"'
+  " Search for existing MATLAB pane inside the current window
+  let cmd = 'list-panes -F "#{session_id}:#{window_id}.#{pane_id}-#{pane_start_command}"'
   let views = split(matlab#_tmux(cmd), '\n')
 
   for view in views
     " Check if the start command contains matlab (case-insensitive)
     if match(view, '\cmatlab') != -1
-      let g:matlab_server_pane = split(view, ':')[0]
+      let g:matlab_server_pane = split(view, '-')[0]
       return g:matlab_server_pane
     endif
   endfor
 
   return -1
+endfunction
+
+function! matlab#_pane_exists()
+  if !exists('g:matlab_server_pane')
+      return 0
+  endif
+
+  cal matlab#_tmux('has-session -t "'.g:matlab_server_pane.'"')
+  return v:shell_error == 0
 endfunction
