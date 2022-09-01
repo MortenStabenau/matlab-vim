@@ -25,8 +25,8 @@ function! matlab#start_server(...)
       let startup_command = startup_command.a:2.';'
     endif
 
-    let mlcmd = 'clear && '.g:matlab_executable.' -nodesktop -nosplash -r \"'.startup_command.'\"'
-    let cmd = 'split-window -dhPF "#{session_id}:#{window_id}.#{pane_id}" "'.mlcmd.'"'
+    let mlcmd = 'clear && '.g:matlab_executable.' -nodesktop -nosplash -r ' . shellescape(startup_command)
+    let cmd = 'split-window -dhPF "#{session_id}:#{window_id}.#{pane_id}" ' . shellescape(mlcmd)
     let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^%$@\.:0-9]', '', 'g')
 
     if matlab#_pane_exists()
@@ -37,7 +37,7 @@ function! matlab#start_server(...)
     endif
 
     " Set pane size
-    cal matlab#_tmux('resize-pane -t ' . g:matlab_server_pane . ' -x ' . g:matlab_panel_size)
+    cal matlab#_tmux("resize-pane -t " . shellescape(g:matlab_server_pane) . " -x " . shellescape(g:matlab_panel_size))
 
     " Zoom current pane
     cal matlab#_tmux('resize-pane -Z')
@@ -135,12 +135,12 @@ function! matlab#_run(command, ...)
     " Send control-c to abort any running command except when it is disabled
     " by an additional argument
     if ! a:0 || (a:0 && a:1)
-      cal matlab#_tmux('send-keys -t "'.target.'" C-c')
+      cal matlab#_tmux("send-keys -t ".shellescape(target)." C-c")
     endif
 
     let cmd = escape(a:command, '"')
-    let r =  matlab#_tmux('send-keys -t "'.target.'" "'.cmd.'"')
-    cal matlab#_tmux('send-keys -t "'.target.'" Enter')
+    let r =  matlab#_tmux("send-keys -t ".shellescape(target). " " . shellescape(cmd))
+    cal matlab#_tmux("send-keys -t ".shellescape(target)." Enter")
     return r
   else
     echom 'Matlab pane could not be found. Start Matlab? [Y/n]'
@@ -209,9 +209,10 @@ endfunction
 
 function! matlab#_pane_exists()
   if !exists('g:matlab_server_pane')
-      return 0
+    return 0
   endif
 
-  cal matlab#_tmux('has-session -t "'.g:matlab_server_pane.'"')
+  cal matlab#_tmux("has-session -t ".shellescape(g:matlab_server_pane))
   return v:shell_error == 0
 endfunction
+" vim: ts=2 sw=2
