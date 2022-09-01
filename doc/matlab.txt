@@ -39,14 +39,15 @@ The plugin now provides multiple functions (|matlab-functions|) and mappings
 running scripts, adding breakpoints and opening documentation.
 
 matlab.vim also includes syntax highlighting, which was copied from
-MatlabFilesEdition by Fabrice Guy (|matlab-credits|).
+MatlabFilesEdition by Fabrice Guy (|matlab-credits|) and updated after.
 
 ==============================================================================
  3. COMMANDS                                        *matlab-commands*
 
 :MatlabRun                                          *:MatlabRun*
 
-Runs the currently open MATLAB script.
+Runs the currently open MATLAB script. Optionally, by using :MatlabRun CMD,
+one can run arbitary MATLAB commands.
 
 ------------------------------------------------------------------------------
 :MatlabBreakpoint                                   *:MatlabBreakpoint*
