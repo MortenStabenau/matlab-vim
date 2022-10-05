@@ -470,6 +470,9 @@ syn keyword matlabFunc matlab.settings.mustBeIntegerScalar Setting SettingsGroup
 " This needs a special case because it is also a vim keyword
 syn match matlabFunc "contains"
 
+" Most operators also have a function equivalent
+syn keyword matlabFunc or and not
+
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
