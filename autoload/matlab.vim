@@ -18,7 +18,7 @@ function! matlab#start_server(...)
   if matlab#_get_server_pane() == -1
     " Create new pane, start matlab in it and save its id
     " Yeah, this is a reeeeally long command
-    let startup_command = 'cd '.matlab#_get_project_root().';'
+    let startup_command = 'cd '.shellescape(matlab#_get_project_root()).';'
 
     " Treat optional second argument: add command to startup
     if a:0 > 1

@@ -58,7 +58,6 @@ highlighting.
 - Initial working folder should check if any MATLAB files are present
 - Add a nice demo gif to this README
 - Display breakpoints (?)
-- Paths with spaces do not work
 - Running blocks - pretty tricky, I would need to find the code inside this group of percentage sign, strip out all
   comments and empty lines, add them all together with correct escaping and send it into a tmux command to be executed.
 
