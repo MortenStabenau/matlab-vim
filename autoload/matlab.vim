@@ -26,7 +26,8 @@ function! matlab#start_server(...)
     endif
 
     let mlcmd = 'clear && '.g:matlab_executable.' -nodesktop -nosplash -r ' . shellescape(startup_command)
-    let cmd = 'split-window -dhPF "#{session_id}:#{window_id}.#{pane_id}" ' . shellescape(mlcmd)
+    let tmux_format = '-dPF "#{session_id}:#{window_id}.#{pane_id}"'
+    let cmd = 'split-window -' . g:matlab_panel_direction . ' ' . tmux_format .  ' ' . shellescape(mlcmd)
     let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^%$@\.:0-9]', '', 'g')
 
     if matlab#_pane_exists()
