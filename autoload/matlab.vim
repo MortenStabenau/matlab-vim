@@ -25,7 +25,15 @@ function! matlab#start_server(...)
       let startup_command = startup_command.a:2.';'
     endif
 
-    let mlcmd = 'clear && '.g:matlab_executable.' -nodesktop -nosplash -r ' . shellescape(startup_command)
+    " Octave compatibility
+    if g:matlab_use_octave
+      let mloptions = '--persist --eval '
+    else
+      let mloptions = '-nodesktop -nosplash -r '
+    endif
+
+    let mlcmd = 'clear && ' . g:matlab_executable . ' ' . mloptions . shellescape(startup_command)
+
     let tmux_format = '-dPF "#{session_id}:#{window_id}.#{pane_id}"'
     let cmd = 'split-window -' . g:matlab_panel_direction . ' ' . tmux_format .  ' ' . shellescape(mlcmd)
     let g:matlab_server_pane = substitute(matlab#_tmux(cmd), '[^%$@\.:0-9]', '', 'g')
@@ -137,11 +145,13 @@ function! matlab#_run(command, ...)
     " by an additional argument
     if ! a:0 || (a:0 && a:1)
       cal matlab#_tmux("send-keys -t ".shellescape(target)." C-c")
+
+      " Octave doesn't accept a command too quickly after CTRL+C
+      sleep 100m
     endif
 
     let cmd = escape(a:command, '"')
-    let r =  matlab#_tmux("send-keys -t ".shellescape(target). " " . shellescape(cmd))
-    cal matlab#_tmux("send-keys -t ".shellescape(target)." Enter")
+    let r =  matlab#_tmux("send-keys -t ".shellescape(target). " " . shellescape(cmd) . " Enter")
     return r
   else
     echom 'Matlab pane could not be found. Start Matlab? [Y/n]'

@@ -110,6 +110,13 @@ Change the path to the matlab executable that gets run during
 |:MatlabStartServer|.
 
 ------------------------------------------------------------------------------
+g:matlab_use_octave                                 *matlab_use_octave*
+
+Default value: 0
+To use Octave, set this option to 1. Note that the executable also needs to be
+updated accordingly.
+
+------------------------------------------------------------------------------
 g:matlab_panel_size                                 *matlab_panel_size*
 
 Default value: 120

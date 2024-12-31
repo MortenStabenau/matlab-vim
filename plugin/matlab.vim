@@ -4,6 +4,7 @@ let g:matlab_executable       = get(g:, 'matlab_executable', 'matlab')
 let g:matlab_panel_size       = get(g:, 'matlab_panel_size', 120)
 let g:matlab_panel_direction  = get(g:, 'matlab_panel_direction', 'h')
 let g:matlab_auto_start       = get(g:, 'matlab_auto_start', 1)
+let g:matlab_use_octave       = get(g:, 'matlab_use_octave', 0)
 
 " Commands
 com! -nargs=? MatlabRun     cal matlab#run(<args>)

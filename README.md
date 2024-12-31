@@ -1,14 +1,12 @@
 # matlab.vim - a vim plugin for using MATLAB and tmux
 
-This plugin provides some simple integration between vim, MATLAB and tmux. On
-opening a MATLAB file (for example a .m-file) the plugin launches a MATLAB
-console in a new hidden tmux split at the right of the current split. The split
-is hidden by zooming the current pane and can be unhidden by using
-`prefix+rightarrow`, for example.
+This plugin provides some simple integration between vim, MATLAB (or Octave, see below) and tmux. On opening a MATLAB
+file (for example a .m-file) the plugin launches a MATLAB console in a new hidden tmux split at the right of the
+current split.  The split is hidden by zooming the current pane and can be unhidden by using `prefix+rightarrow`, for
+example.
 
-The plugin now provides multiple functions and mappings which make it easier to
-interact with MATLAB. These include running scripts, adding breakpoints and
-opening documentation.
+The plugin now provides multiple functions and mappings which make it easier to interact with MATLAB. These include
+running scripts, adding breakpoints and opening documentation.
 
 matlab.vim also includes syntax highlighting, which was copied from
 [MatlabFilesEdition](http://www.vim.org/scripts/script.php?script_id=2407) by
@@ -46,6 +44,13 @@ For an overview of all options, check out the
 [doc](https://github.com/MortenStabenau/matlab-vim/blob/master/doc/matlab.txt)
 file.
 
+## Usage with Octave
+To use this plugin with Octave, set the following options in your vimrc:
+```vim
+let g:matlab_use_octave=1
+let g:matlab_executable='octave'
+```
+
 ## Documentation
 For a full documentation detailing the commands, options and mappings, please
 read the
@@ -54,7 +59,6 @@ file or run `help matlab`. The latter also gives you pretty syntax
 highlighting.
 
 ## TODO
-- Octave compatibility?
 - Initial working folder should check if any MATLAB files are present
 - Add a nice demo gif to this README
 - Display breakpoints (?)
