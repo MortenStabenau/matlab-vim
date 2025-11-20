@@ -38,6 +38,7 @@ syn match matlabLineContinuation	"\.\{3}"
 
 " String
 syn region matlabString			start=+'+ end=+'+	oneline
+syn region matlabString			start=+"+ end=+"+	oneline
 
 " If you don't like tabs
 syn match matlabTab			"\t"
