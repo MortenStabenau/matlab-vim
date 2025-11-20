@@ -19,4 +19,8 @@ com! MatlabDoc              cal matlab#doc()
 augroup matlab-vim
     autocmd FileType matlab :MatlabAutoStartServer
     autocmd VimLeave * :MatlabStopServer
+
+    " Keybindings for faster navigation (same as for vimscript files for example)
+    autocmd FileType matlab nmap <buffer> [[ :call search('^\s*\(function\)\\|\(properties\)', 'b') <CR>
+    autocmd FileType matlab nmap <buffer> ]] :call search('^\s*\(function\)\\|\(properties\)') <CR>
 augroup END
